@@ -1,0 +1,10 @@
+<resources>
+    <string name="app_name">Counter Project</string>
+    <string name="scoreZero">0</string>
+    <string name="teamA">Team A</string>
+    <string name="teamB">Team B</string>
+    <string name="reset">Reset</string>
+    <string name="minusOne">-</string>
+    <string name="plusOne">+</string>
+
+</resources>
