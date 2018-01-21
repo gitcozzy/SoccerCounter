@@ -38,6 +38,8 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.TextView;
 
+import java.lang.ref.Reference;
+
 public class MainActivity extends AppCompatActivity {
 
     // Team A and B variables
@@ -47,10 +49,16 @@ public class MainActivity extends AppCompatActivity {
     private int yellowB = 0;
     private int redA = 0;
     private int redB = 0;
+    private TextView displayScoreA;
+    private TextView displayScoreB;
+    private TextView displayYellowA;
+    private TextView displayYellowB;
+    private TextView displayRedA;
+    private TextView displayRedB;
 
+    // Read values from the "savedInstanceState"
     @Override
     protected void onRestoreInstanceState(Bundle savedInstanceState) {
-        // Read values from the "savedInstanceState"
         super.onRestoreInstanceState(savedInstanceState);
         scoreA = savedInstanceState.getInt("scoreA");
         scoreB = savedInstanceState.getInt("scoreB");
@@ -61,9 +69,9 @@ public class MainActivity extends AppCompatActivity {
         displayAll();
     }
 
+    // Save the values you need into "outState"
     @Override
     protected void onSaveInstanceState(Bundle outState) {
-        // Save the values you need into "outState"
         super.onSaveInstanceState(outState);
         outState.putInt("scoreA", scoreA);
         outState.putInt("scoreB", scoreB);
@@ -77,6 +85,12 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        displayScoreA = (TextView)findViewById(R.id.displayScoreA);
+        displayScoreB = (TextView)findViewById(R.id.displayScoreB);
+        displayYellowA = (TextView)findViewById(R.id.displayYellowA);
+        displayYellowB = (TextView)findViewById(R.id.displayYellowB);
+        displayRedA = (TextView)findViewById(R.id.displayRedA);
+        displayRedB = (TextView)findViewById(R.id.displayRedB);
     }
 
     //<---------TEAM A---------->
@@ -120,17 +134,17 @@ public class MainActivity extends AppCompatActivity {
 
     // Team A display methods
     public void displayScoreA(int score) {
-        TextView scoreView = (TextView) findViewById(R.id.displayScoreA);
+        TextView scoreView = displayScoreA;
         scoreView.setText(String.valueOf(score));
     }
 
     public void displayYellowA(int score) {
-        TextView scoreView = (TextView) findViewById(R.id.displayYellowA);
+        TextView scoreView = displayYellowA;
         scoreView.setText(String.valueOf(score));
     }
 
     public void displayRedA(int score) {
-        TextView scoreView = (TextView) findViewById(R.id.displayRedA);
+        TextView scoreView = displayRedA;
         scoreView.setText(String.valueOf(score));
     }
 
@@ -177,17 +191,17 @@ public class MainActivity extends AppCompatActivity {
     // Team B display methods:
 
     public void displayScoreB(int score) {
-        TextView scoreView = (TextView) findViewById(R.id.displayScoreB);
+        TextView scoreView = displayScoreB;
         scoreView.setText(String.valueOf(score));
     }
 
     public void displayYellowB(int score) {
-        TextView scoreView = (TextView) findViewById(R.id.displayYellowB);
+        TextView scoreView = displayYellowB;
         scoreView.setText(String.valueOf(score));
     }
 
     public void displayRedB(int score) {
-        TextView scoreView = (TextView) findViewById(R.id.displayRedB);
+        TextView scoreView = displayRedB;
         scoreView.setText(String.valueOf(score));
     }
 
@@ -201,6 +215,8 @@ public class MainActivity extends AppCompatActivity {
         redB = 0;
         displayAll();
     }
+
+    // Displays all variables
     public void displayAll() {
         displayScoreA(scoreA);
         displayScoreB(scoreB);
@@ -210,3 +226,4 @@ public class MainActivity extends AppCompatActivity {
         displayRedB(redB);
     }
 }
+
